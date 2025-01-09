@@ -53,39 +53,26 @@ def callback():
         print(tracks)
         songs = []
         for track in tracks:# iterates through 100 songs at most in playlist
-            print(f"Track: {track['name']}") 
-            print(f"Artist: {track['artists'][0]['name']}")
+            print(f"Track: {track['name']}") #Troubleshooting
+            print(f"Artist: {track['artists'][0]['name']}")#Troubleshooting
             trackname = f"{track['name']}"
             lang_trackname = detector(trackname)
-            print(lang_trackname)
+            print(lang_trackname)#Troubleshooting
             artist = f"{track['artists'][0]['name']}"
             lang_artist = detector(artist)
-            print(lang_artist)
+            print(lang_artist)#Troubleshooting
             if ask4 == "r":
                 if (lang_trackname != ask2) and (lang_artist != ask2):
                     print(track['uri'])
                     songs.append(track['uri'])
-                    print("wow!")
+                    print("wow!")#Troubleshooting
             elif ask4 == "k":
                 if (lang_trackname == ask2) and (lang_artist == ask2):
                     songs.append(track['uri'])
                     print("wow!")
-                #add to new playlist, other wise do not do so
-     #       j+=1
-     #       if j >= 110:
-     #           break
             print()
     add_tracks_to_playlist(access_token, playlist_id_new, songs)
-    #add a keep songs of only a certain language feature too
-    #
-    #code to ask for the playlist user wants to modify and then makes that the playlist to be modified
-    #ask = str(input("What's the name of the playlist you want to modify:"))
-    #ask2 = str(input("What type of language songs do you want to remove from the playlist (English(en), Spanish(es), Hindi(hi), or Japanese(jp)):"))
-    #for i in range(0,len(playlists["items"])):
-    #    if ask == (playlists['items'][i]["name"]):
-    #     auth_id = playlists['items'][i]["id"]# takes the playlist ID of the playlist the user wants
-    #make function that uses lang detect to categorize words to language and classifies song
-    #make function that adds desired songs based on language to new playlist
+  
     return "Authorization complete! Check your console for playlist details."
 
 def get_access_token(client_id, client_secret, redirect_uri, auth_code): 
@@ -135,7 +122,7 @@ def get_playlist_tracks(playlist_id, access_token, offset = 0):
 
 
 
-# Example: Create a new playlist 
+#Create a new playlist 
 def create_playlist(access_token, user_id, name): 
     url = f'https://api.spotify.com/v1/users/{user_id}/playlists' 
     headers = { 
@@ -175,11 +162,6 @@ def create_playlist_get_id(access_token, user_id, playlist_name, public=True):
     else: 
         print("Error creating playlist:", response.json()) 
         return None
-
-
-#def detector(string):
-#    language = detect(string)
-#    return language
 
 def detector(string): 
     try: 
